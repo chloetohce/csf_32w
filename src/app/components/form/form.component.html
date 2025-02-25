@@ -1,0 +1,34 @@
+<h1>Todo</h1>
+<form action="" [formGroup]="todoForm" (submit)="processForm()">
+    <table>
+        <tr>
+            <td><label for="description">Description</label></td>
+            <td>
+                <input type="text" name="description" id="description" formControlName="description">
+            </td>
+        </tr>
+        <tr>
+            <td><label for="priority">Priority</label></td>
+            <td>
+                <input type="radio" name="priority" id="high" formControlName="priority">
+                <label for="high">High</label>
+                <input type="radio" name="priority" id="medium" formControlName="priority" >
+                <label for="medium">Medium</label>
+                <input type="radio" name="priority" id="low" formControlName="priority">
+                <label for="low">Low</label>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="due">Due</label></td>
+            <td>
+                <input type="date" name="due" id="due" formControlName="due">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit">Add</button>
+            </td>
+        </tr>
+    </table>
+</form>
