@@ -1,2 +1,2 @@
-<app-form></app-form>
-<app-task></app-task>
+<app-form (newTask)="processNewTask($event)"></app-form>
+<app-task [newTask]="task"></app-task>

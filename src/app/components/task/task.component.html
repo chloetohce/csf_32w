@@ -1,1 +1,14 @@
-<p>task works!</p>
+<div class="task">
+    <h1>Task</h1>
+    @for (task of tasks; let i = $index; track i) {
+        <div class="task-item">
+            <div class="title">
+                <p>{{task.description}}</p>
+            </div>
+            <div class="small-text">
+                <p>{{task.priority}}</p>
+                <p>{{task.due}}</p>
+            </div>
+        </div>
+    }
+</div>

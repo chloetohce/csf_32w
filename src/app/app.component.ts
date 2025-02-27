@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Task } from './models';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'csf_32w';
+
+  task!: Task;
+
+  protected processNewTask(task: Task) {
+    console.log("AppComponent: ", task)
+    this.task = task;
+  }
 }
