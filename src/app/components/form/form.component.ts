@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { Task } from '../../models';
 
@@ -29,13 +29,26 @@ export class FormComponent implements OnInit {
     console.info("Created new task: ", this.todoForm.value);
   }
 
+  protected isFieldValid(field: string): boolean {
+    return !!this.todoForm.get(field)?.valid || !!this.todoForm.get(field)?.pristine;
+  }
+
   private createForm(): FormGroup {
     const defaultDate = new Date();
     defaultDate.setDate(defaultDate.getDate() + 1)
     return this.fb.group({
-      description: this.fb.control<string>(''),
-      priority: this.fb.control<string>('medium'),
-      due: this.fb.control<string>(defaultDate.toISOString().split("T")[0])
+      description: this.fb.control<string>('', [Validators.required, Validators.minLength(5)]),
+      priority: this.fb.control<string>('low'),
+      due: this.fb.control<string>(defaultDate.toISOString().split("T")[0],
+        [
+          (control: AbstractControl) => {
+            const selectedDate = Date.parse(control.value);
+            const now = Date.now();
+            return selectedDate >= now ? null : {pastDate: true}
+          }
+        ]
+      )
+      
     })
   }
 }

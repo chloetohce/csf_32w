@@ -4,12 +4,12 @@
         <tr>
             <td><label for="description">Description</label></td>
             <td>
-                <input type="text" name="description" id="description" formControlName="description">
+                <input type="text" name="description" id="description" formControlName="description" [class]="isFieldValid('description') ? 'valid' : 'invalid'">
             </td>
         </tr>
         <tr>
             <td><p>Priority</p></td>
-            <td>
+            <td [class]="isFieldValid('priority') ? 'valid' : 'invalid'">
                 <input type="radio" name="priority" id="high" formControlName="priority" value="high">
                 <label for="high">High</label>
                 <input type="radio" name="priority" id="medium" formControlName="priority" value="medium">
@@ -21,7 +21,7 @@
         <tr>
             <td><label for="due">Due</label></td>
             <td>
-                <input type="date" name="due" id="due" formControlName="due">
+                <input type="date" name="due" id="due" formControlName="due" [class]="isFieldValid('due') ? 'valid' : 'invalid'">
             </td>
         </tr>
         <tr>
