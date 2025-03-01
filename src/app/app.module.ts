@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
 import { TaskComponent } from './components/task/task.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

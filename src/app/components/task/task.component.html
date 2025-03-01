@@ -1,7 +1,7 @@
 <div class="task">
     <div class="top">
         <h1>Tasks</h1>
-        <button type="button" (click)="toggleCompletedVisibility()">{{visibleButtonText}}</button>
+        <mat-slide-toggle (click)="toggleCompletedVisibility()">{{visibleButtonText}}</mat-slide-toggle>
     </div>
     @for (task of tasks; let i = $index; track i) {
 

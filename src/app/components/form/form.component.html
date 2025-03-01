@@ -1,34 +1,34 @@
 <h1>Todo</h1>
 <form action="" [formGroup]="todoForm" (ngSubmit)="processForm()">
-    <table>
-        <tr>
-            <td><label for="description">Description</label></td>
-            <td>
-                <input type="text" name="description" id="description" formControlName="description" [class]="isFieldValid('description') ? 'valid' : 'invalid'">
-            </td>
-        </tr>
-        <tr>
-            <td><p>Priority</p></td>
-            <td [class]="isFieldValid('priority') ? 'valid' : 'invalid'">
-                <input type="radio" name="priority" id="high" formControlName="priority" value="high">
-                <label for="high">High</label>
-                <input type="radio" name="priority" id="medium" formControlName="priority" value="medium">
-                <label for="medium">Medium</label>
-                <input type="radio" name="priority" id="low" formControlName="priority" value="low">
-                <label for="low">Low</label>
-            </td>
-        </tr>
-        <tr>
-            <td><label for="due">Due</label></td>
-            <td>
-                <input type="date" name="due" id="due" formControlName="due" [class]="isFieldValid('due') ? 'valid' : 'invalid'">
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <button type="submit" [disabled]="!isFieldValid('due')">Add</button>
-            </td>
-        </tr>
-    </table>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" [class]="isFieldValid('description') ? 'valid' : 'invalid'">
+    </mat-form-field>
+
+
+    <p>Priority</p>
+    <mat-radio-group formControlName="priority" [class]="isFieldValid('priority') ? 'valid' : 'invalid'">
+        <mat-radio-button type="radio" value="high">
+            High
+        </mat-radio-button>
+        <mat-radio-button type="radio"  value="medium">
+            Medium
+        </mat-radio-button>
+        <mat-radio-button type="radio" value="low">
+            Low
+        </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field [class]="isFieldValid('due') ? 'valid' : 'invalid'">
+        <mat-label>Due Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="due" >
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <br>
+      <br>
+    <button type="submit" [disabled]="!isFieldValid('due')" mat-flat-button>Add</button>
+
 </form>
