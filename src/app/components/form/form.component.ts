@@ -24,6 +24,7 @@ export class FormComponent implements OnInit {
       description: this.todoForm.get('description')?.value,
       priority: this.todoForm.get('priority')?.value,
       due: this.todoForm.get('due')?.value,
+      completion: false
     }
     this.newTask.next(task);
     console.info("Created new task: ", this.todoForm.value);
@@ -42,8 +43,10 @@ export class FormComponent implements OnInit {
       due: this.fb.control<string>(defaultDate.toISOString().split("T")[0],
         [
           (control: AbstractControl) => {
-            const selectedDate = Date.parse(control.value);
-            const now = Date.now();
+            const selectedDate = new Date(control.value);
+            const now = new Date();
+            selectedDate.setHours(0, 0, 0, 0)
+            now.setHours(0, 0, 0, 0)
             return selectedDate >= now ? null : {pastDate: true}
           }
         ]
