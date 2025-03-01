@@ -27,7 +27,7 @@
         <tr>
             <td></td>
             <td>
-                <button type="submit">Add</button>
+                <button type="submit" [disabled]="!isFieldValid('due')">Add</button>
             </td>
         </tr>
     </table>
